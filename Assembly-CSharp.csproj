@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\ImprovedHandController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
