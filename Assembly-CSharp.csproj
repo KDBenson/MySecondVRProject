@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\VR_FrameCounter\FramesPerSecond.cs" />
     <Compile Include="Assets\TeleportController.cs" />
+    <Compile Include="Assets\Scripts\ButtonSceneNavigation.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
