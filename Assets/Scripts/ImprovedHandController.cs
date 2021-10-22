@@ -28,6 +28,7 @@ public class ImprovedHandController : MonoBehaviour
         //for some reason it will stop animating properly unless you do it this way
         //having _handAnimator = GetComponent<Animator>(); up in Awake is useless if more than 1 scene uses hands
         Animator _thisAnimator = GetComponent<Animator>();
+        //do a null check and add a debug log
         return _thisAnimator;
     }
 
