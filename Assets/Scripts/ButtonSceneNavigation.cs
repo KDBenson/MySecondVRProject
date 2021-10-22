@@ -10,4 +10,10 @@ public class ButtonSceneNavigation : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quitting Application.");
+    }
 }

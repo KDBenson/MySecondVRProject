@@ -160,10 +160,21 @@
                 {
                     "name": "",
                     "id": "b34c79c1-ab5e-4851-87ac-abc43705eae0",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "path": "<XRController>{LeftHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a704579f-c47f-44eb-a429-a44330620e38",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "UI Press",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -760,6 +771,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b850fd64-d406-484f-9ee2-71ca8a3d67b4",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "UI Press",
                     "isComposite": false,
                     "isPartOfComposite": false
