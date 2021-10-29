@@ -53,6 +53,7 @@
     <UnityVersion>2020.3.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CardReaderTrigger.cs" />
     <Compile Include="Assets\Scripts\ImprovedHandController.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
@@ -60,7 +61,7 @@
     <Compile Include="Assets\VR_FrameCounter\FramesPerSecond.cs" />
     <Compile Include="Assets\TeleportController.cs" />
     <Compile Include="Assets\Scripts\ButtonSceneNavigation.cs" />
-    <Compile Include="Assets\Scripts\CardReaderTrigger.cs" />
+    <Compile Include="Assets\Scripts\CardBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
