@@ -56,10 +56,11 @@
     <Compile Include="Assets\Scripts\ImprovedHandController.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\VR_FrameCounter\FramesPerSecond.cs" />
     <Compile Include="Assets\TeleportController.cs" />
     <Compile Include="Assets\Scripts\ButtonSceneNavigation.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\CardReaderTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
