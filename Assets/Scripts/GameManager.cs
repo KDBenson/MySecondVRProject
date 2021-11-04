@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
 
         Debug.Log("hello from PlayerWins() in GameManager");
-        Debug.Log("Player Wins! Put some Logic in here");
+        Debug.Log("this needs to be better");
         Debug.Log("xxxxxxxxxxxxxxx");
     }
 
