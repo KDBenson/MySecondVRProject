@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CardBehaviour : MonoBehaviour
 {
+    private GameObject _currentInteractable;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "IDCard")
+        _currentInteractable = collision.gameObject;
+        if (_currentInteractable != null)
         {
             Debug.Log("Card in the reader! Good!");
         }

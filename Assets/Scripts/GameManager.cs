@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    #region Singleton Game Manager
+    static GameManager _instance;
     public static GameManager Instance
     {
         get
         {
-            if (_instance == null)
-            {
-                Debug.LogError("Game Manager is null");
-            }
             return _instance;
         }
     }
@@ -20,18 +17,28 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    #endregion
+
+    private bool hasWon;
+    public bool HasWon { get { return hasWon; } }
+
+    public void PlayerWins()
     {
-        
+        Debug.Log("xxxxxxxxxxxxxxx -> calling PlayerWins() in GameManager");
+        Debug.Log("Player Wins! Put some Logic in here");
+        Debug.Log("xxxxxxxxxxxxxxx");
     }
+
 }
