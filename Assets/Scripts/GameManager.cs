@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -31,12 +32,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private bool hasWon;
-    public bool HasWon { get { return hasWon; } }
+
 
     public void PlayerWins()
     {
-        Debug.Log("xxxxxxxxxxxxxxx -> calling PlayerWins() in GameManager");
+
+        Debug.Log("hello from PlayerWins() in GameManager");
         Debug.Log("Player Wins! Put some Logic in here");
         Debug.Log("xxxxxxxxxxxxxxx");
     }
