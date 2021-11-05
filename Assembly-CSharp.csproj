@@ -63,6 +63,9 @@
     <Compile Include="Assets\TeleportController.cs" />
     <Compile Include="Assets\Scripts\ButtonSceneNavigation.cs" />
     <Compile Include="Assets\Scripts\BasicTriggerArea.cs" />
+    <Compile Include="Assets\Scripts\SocketWithTagCheck.cs" />
+    <Compile Include="Assets\Scripts\SimpleTriggerableObject.cs" />
+    <Compile Include="Assets\Scripts\TriggerCatalyst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

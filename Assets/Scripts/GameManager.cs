@@ -32,14 +32,17 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    //todo-- same behaviour, no sockets.
 
+    public ButtonSceneNavigation sceneNavigation;
+    public bool cardInReader = false;
 
     public void PlayerWins()
     {
-
         Debug.Log("hello from PlayerWins() in GameManager");
-        Debug.Log("this needs to be better");
-        Debug.Log("xxxxxxxxxxxxxxx");
+        Debug.Log("bool cardInReader is:");
+        Debug.Log(cardInReader.ToString());
+       // sceneNavigation.LoadScene("MainMenu");
     }
 
 }
