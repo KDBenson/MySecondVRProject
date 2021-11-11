@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4578868346176231896}
   - component: {fileID: 5908116195845938052}
   - component: {fileID: 6454166652189900560}
+  - component: {fileID: 7256708952678438938}
   m_Layer: 0
   m_Name: Card
   m_TagString: IDCard
@@ -220,6 +221,21 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &7256708952678438938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350373621277481049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ac4f3d97678434ea81895d2779d532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catalyst:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9050467655277111503
 GameObject:
   m_ObjectHideFlags: 0
