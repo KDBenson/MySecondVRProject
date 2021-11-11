@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SimpleTriggerableObject : MonoBehaviour
 {
-    //see if object going in is catalyst
+    //colliding object must have TriggerCatalyst component on it
+    //triggerable objects must set 'as trigger', with kinematic rigidbody component.
+
     private void OnTriggerEnter(Collider other)
     {
         TriggerCatalyst catalyst = other.transform.GetComponent<TriggerCatalyst>();
+
         if(catalyst!= null)
-        {
-            catalyst.InitiateAction();
+        {            
+            catalyst.InitiateAction();            
         }
+
     }
 }
