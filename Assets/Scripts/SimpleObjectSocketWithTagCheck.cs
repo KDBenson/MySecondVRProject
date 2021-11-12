@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class SimpleObjectSocket : MonoBehaviour
+public class SimpleObjectSocketWithTagCheck : MonoBehaviour
 {
-    //public SimpleTagCheck tagChecker;
+    //case sensitive string for the object ID to compare for, only matching tags will slot
+    public string targetTag = "Untagged";
 
     //set this to the object with the transform position and rotation you want the object to appear at
-    [SerializeField]    
+    [SerializeField]
     Transform objectSlotAnchor;
+    //this logic can be extended to make an object socket with an 'eject' transform if just falling out is too ugly.
 
     //an interactable object has a rigidbody, we want to capture that specific rigidbody to freeze it
     private XRGrabInteractable curInteractable = null;
     private Rigidbody heldRigidBody = null;
+    private bool socketOccupied = false;
 
     //if no transform was set in the editor, set the transform to the same as the object this component is on
     private void Awake()
@@ -29,8 +32,7 @@ public class SimpleObjectSocket : MonoBehaviour
     {
         if (curInteractable != null)
         {
-            ReleaseMotion();
-            ClearCurrentInteractable();
+            FreeSocket();
         }
     }
 
@@ -39,21 +41,32 @@ public class SimpleObjectSocket : MonoBehaviour
         //capture the object attatched to the collider going into the trigger
         GameObject collidedObject = other.gameObject;
 
-        if (collidedObject != null)
+        if(socketOccupied)
+        {
+            FreeSocket();
+        }
+
+        if (collidedObject != null && CheckTagsForMatch(collidedObject))
         {
             //puts the object into position and rotation immediately, but physics still happens
             collidedObject.transform.position = objectSlotAnchor.position;
             collidedObject.transform.rotation = objectSlotAnchor.rotation;
 
             if (heldRigidBody == null)
-            {
-                SetCurrentInteractable(collidedObject);  
-                FreezeMotion();   
+            {               
+                SetCurrentInteractable(collidedObject);
+                FreezeMotion();
+                socketOccupied = true;
             }
+
         }
+    }
 
-
-
+    private bool FreeSocket()
+    {
+        ReleaseMotion();
+        ClearCurrentInteractable();        
+        return socketOccupied = false;
     }
 
     private void SetCurrentInteractable(GameObject gameObject)
@@ -70,12 +83,23 @@ public class SimpleObjectSocket : MonoBehaviour
 
     private void FreezeMotion()
     {
-        heldRigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        if(heldRigidBody!=null)
+        {
+            heldRigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     private void ReleaseMotion()
     {
-        heldRigidBody.constraints = RigidbodyConstraints.None;
+        if(heldRigidBody!=null)
+        {
+            heldRigidBody.constraints = RigidbodyConstraints.None;
+        }
+    }
+
+    public bool CheckTagsForMatch(GameObject other)
+    {
+        return other.CompareTag(targetTag);
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleTriggerableObject : MonoBehaviour
 {
-    //colliding object must have TriggerCatalyst component on it
+    //colliding/triggering object must have TriggerCatalyst component on it
     //triggerable objects must set 'as trigger', with kinematic rigidbody component.
 
     private void OnTriggerEnter(Collider other)

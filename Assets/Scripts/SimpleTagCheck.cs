@@ -7,18 +7,14 @@ public class SimpleTagCheck : MonoBehaviour
     //case sensitive tag to check for
     public string targetTag = " ";
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag(targetTag))
-        {
-            Debug.Log("SimpleTagCheck Tag match!-----------------------");
-        }
-    }
-
     public bool LookForMatchingTag(GameObject gameObject)
     {
         return gameObject.CompareTag(targetTag);
+    }
+
+    public bool LookForMatchingTagWithString(GameObject gameObject, string compare)
+    {
+        return gameObject.CompareTag(compare);
     }
 
 }

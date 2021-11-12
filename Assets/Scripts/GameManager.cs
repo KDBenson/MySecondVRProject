@@ -32,10 +32,11 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    //todo-- same behaviour, no sockets.
 
+    public SimpleObjectSocket cardReaderSocket;
     public ButtonSceneNavigation sceneNavigation;
     public bool cardInReader = false;
+    
 
     public void PlayerWins()
     {
@@ -43,6 +44,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("bool cardInReader is:");
         Debug.Log(cardInReader.ToString());
        // sceneNavigation.LoadScene("MainMenu");
+    }
+
+    public void CheckWinConditions()
+    {
+        Debug.Log("hello from check win condition");
     }
 
 }
