@@ -9,6 +9,10 @@ public class SimpleObjectSocket : MonoBehaviour
     [SerializeField]    
     Transform objectSlotAnchor;
 
+    //an interactable object has a rigidbody, we want to capture that specific rigidbody to freeze it
+    private XRGrabInteractable curInteractable = null;
+
+    //if no transform was set in the editor, set the transform to the same as the object this component is on
     private void Awake()
     {
         if (objectSlotAnchor == null)
@@ -19,19 +23,33 @@ public class SimpleObjectSocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject slottedObject = other.gameObject;
+        //capture the object attatched to the collider going into the trigger
+        GameObject collidedObject = other.gameObject;
 
-        if (slottedObject != null)
+        if (collidedObject != null)
         {
-            //puts the object into position and rotation
-            slottedObject.transform.position = objectSlotAnchor.position;
-            slottedObject.transform.rotation = objectSlotAnchor.rotation;
-            //freeze the object in place, once this happens it is no longer moveable
-            ////I cannot figure a way to 'stick' the card object into position and not have it pop out
-            Rigidbody thisBody = slottedObject.GetComponent<Rigidbody>();
-            thisBody.constraints = RigidbodyConstraints.FreezeAll;
+            //puts the object into position and rotation immediately, but physics still happens
+            collidedObject.transform.position = objectSlotAnchor.position;
+            collidedObject.transform.rotation = objectSlotAnchor.rotation;
+            //first get the grabinteractable- note that only 1 XR component like this is on an object and it must have a rigidbody
+            if (curInteractable == null)
+            {
+                //set the currently manipulated object to this one coming in
+                curInteractable = collidedObject.GetComponent<XRGrabInteractable>();
+                // Debug.Log("breathe in breathe out, you've got this.");
 
+                //nullcheck makes sure that there is the grabinteractable component on the object
+                if (curInteractable != null)
+                {
+                    //then we want to get that objects rigidbody and change it to be frozen
+                    Rigidbody theBody = curInteractable.GetComponent<Rigidbody>();
+                    theBody.constraints = RigidbodyConstraints.FreezeAll;
+                    //the object is now frozen at the slot anchor transforms position and rotation until it is removed.
+                }                               
+
+            }
         }
     }
+
 
 }
