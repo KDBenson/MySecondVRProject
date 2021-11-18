@@ -33,22 +33,34 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    public SimpleObjectSocket cardReaderSocket;
     public ButtonSceneNavigation sceneNavigation;
-    public bool cardInReader = false;
-    
+    private bool winConditionReached = false;
+
+
 
     public void PlayerWins()
     {
-        Debug.Log("hello from PlayerWins() in GameManager");
-        Debug.Log("bool cardInReader is:");
-        Debug.Log(cardInReader.ToString());
-       // sceneNavigation.LoadScene("MainMenu");
+        Debug.Log("-----------------------------------------------------------------------hello from PlayerWins() in GameManager");
+
+        sceneNavigation.LoadScene("MainMenu");
+
     }
 
     public void CheckWinConditions()
     {
         Debug.Log("hello from check win condition");
+        Debug.Log("winConditionReached is :::::::::::::::::::" + winConditionReached.ToString());
+        if(winConditionReached)
+        {
+            Debug.Log("windcondition reached, invoking playerwins in 3-2-1");
+            Invoke("PlayerWins", 3.0f);
+        }
     }
+
+    public void AchieveWinningCondition()
+    {
+        winConditionReached = true;
+    }
+
 
 }

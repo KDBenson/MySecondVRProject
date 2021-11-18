@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class TriggerCatalyst : MonoBehaviour
 {
     public UnityEvent catalyst;
+    public UnityEvent exitCatalyst;
     public void InitiateAction()
     {
         //do any events hooked up to this object through Unity Editor
@@ -13,5 +14,10 @@ public class TriggerCatalyst : MonoBehaviour
         catalyst.Invoke();
     }
 
+    //adding this to make it toggle a boolean in game manager as example
+    public void RevokeAction()
+    {
+        exitCatalyst.Invoke();
+    }
 
 }

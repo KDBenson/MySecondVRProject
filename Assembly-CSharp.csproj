@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\SimpleTagCheck.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\SocketWithTagCheck.cs" />
+    <Compile Include="Assets\Scripts\SimpleObjectSocketWithTagCheck.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SimpleTriggerableObject.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Assets\Scripts\SimpleObjectSocket.cs" />
     <Compile Include="Assets\Scripts\TriggerCatalyst.cs" />
     <Compile Include="Assets\Scripts\BasicTriggerArea.cs" />
-    <Compile Include="Assets\Scripts\SimpleObjectSocketWithTagCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

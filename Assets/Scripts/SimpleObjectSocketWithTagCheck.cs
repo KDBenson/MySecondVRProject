@@ -13,6 +13,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
     Transform objectSlotAnchor;
     //this logic can be extended to make an object socket with an 'eject' transform if just falling out is too ugly.
 
+
     //an interactable object has a rigidbody, we want to capture that specific rigidbody to freeze it
     private XRGrabInteractable curInteractable = null;
     private Rigidbody heldRigidBody = null;
@@ -25,12 +26,17 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
         {
             objectSlotAnchor = transform;
         }
+
     }
 
     //re-enable moving the object that was held in the slot anchor
     private void OnTriggerExit(Collider other)
     {
-        if (curInteractable != null)
+        //if (curInteractable != null)
+        //{
+        //    FreeSocket();
+        //}
+        if (socketOccupied)
         {
             FreeSocket();
         }
@@ -40,7 +46,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
     {
         //capture the object attatched to the collider going into the trigger
         GameObject collidedObject = other.gameObject;
-
+        //remove what is in the socket if occupied
         if(socketOccupied)
         {
             FreeSocket();
@@ -48,10 +54,10 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
 
         if (collidedObject != null && CheckTagsForMatch(collidedObject))
         {
-            //puts the object into position and rotation immediately, but physics still happens
+            //puts the object into position and rotation immediately, and physics still happens
             collidedObject.transform.position = objectSlotAnchor.position;
             collidedObject.transform.rotation = objectSlotAnchor.rotation;
-
+            //set the interactable into the socket
             if (heldRigidBody == null)
             {               
                 SetCurrentInteractable(collidedObject);
@@ -65,7 +71,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
     private bool FreeSocket()
     {
         ReleaseMotion();
-        ClearCurrentInteractable();        
+        ClearCurrentInteractable();
         return socketOccupied = false;
     }
 

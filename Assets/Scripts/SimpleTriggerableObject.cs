@@ -17,4 +17,14 @@ public class SimpleTriggerableObject : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        TriggerCatalyst exitCatalyst = other.transform.GetComponent<TriggerCatalyst>();
+        if(exitCatalyst!=null)
+        {
+            exitCatalyst.RevokeAction();
+        }
+    }
+
 }
