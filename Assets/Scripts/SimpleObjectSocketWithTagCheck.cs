@@ -40,6 +40,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
         {
             FreeSocket();
         }
+        other.attachedRigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void OnTriggerEnter(Collider other)

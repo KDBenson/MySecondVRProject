@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,33 +35,32 @@ public class GameManager : MonoBehaviour
 
 
     public ButtonSceneNavigation sceneNavigation;
-    private bool winConditionReached = false;
-
+    public bool winConditionReached = false;
 
 
     public void PlayerWins()
     {
         Debug.Log("-----------------------------------------------------------------------hello from PlayerWins() in GameManager");
-
-        sceneNavigation.LoadScene("MainMenu");
-
+        sceneNavigation.LoadMainMenu();
     }
 
     public void CheckWinConditions()
     {
+        
         Debug.Log("hello from check win condition");
-        Debug.Log("winConditionReached is :::::::::::::::::::" + winConditionReached.ToString());
-        if(winConditionReached)
-        {
-            Debug.Log("windcondition reached, invoking playerwins in 3-2-1");
-            Invoke("PlayerWins", 3.0f);
-        }
+        Invoke("PlayerWins", 1.5f);
+        //PlayerWins();
     }
 
+    
     public void AchieveWinningCondition()
     {
         winConditionReached = true;
     }
 
+    public void RemoveWinningCondition()
+    {
+        winConditionReached = false;
+    }
 
 }

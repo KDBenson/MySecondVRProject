@@ -11,6 +11,22 @@ public class ButtonSceneNavigation : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LoadSceneByBuildIndex(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    ////expand this by making it take a float variable and putting that as the invoke time.
+    //public void LoadMainMenuAfterWait()
+    //{
+    //    Invoke("LoadMainMenu", 3.0f);
+    //}
+
     public void QuitGame()
     {
         Application.Quit();
