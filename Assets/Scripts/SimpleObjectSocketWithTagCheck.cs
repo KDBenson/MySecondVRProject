@@ -20,7 +20,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
     private bool socketOccupied = false;
 
     //if no transform was set in the editor, set the transform to the same as the object this component is on
-    private void Awake()
+    private void Start()
     {
         if (objectSlotAnchor == null)
         {

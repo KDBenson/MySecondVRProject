@@ -41,6 +41,7 @@ public class ImprovedHandController : MonoBehaviour
         //when we change scenes what was there is destroyed, so it's going to be crying about nulls without this
     }
 
+
     private void TriggerPress(InputAction.CallbackContext obj)
     {
         if (_handAnimator != null)

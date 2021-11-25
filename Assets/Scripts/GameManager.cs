@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     #region Singleton Game Manager
     static GameManager _instance;
+
+
     public static GameManager Instance
     {
         get
@@ -40,16 +42,24 @@ public class GameManager : MonoBehaviour
 
     public void PlayerWins()
     {
-        Debug.Log("-----------------------------------------------------------------------hello from PlayerWins() in GameManager");
+        Debug.Log("---------------------------------------hello from PlayerWins() in GameManager");
+        //having issue with this being null if I try to do it more than once
         sceneNavigation.LoadMainMenu();
+
     }
 
     public void CheckWinConditions()
     {
         
         Debug.Log("hello from check win condition");
-        Invoke("PlayerWins", 1.5f);
+        Invoke("PlayerWins", 2.5f);
         //PlayerWins();
+    }
+
+    public void TestThing()
+    {
+        //making this because for some reason it'll only invoke player wins on the very first time the triggerable goes off, and only if it's the first card used
+        Debug.Log("~~~#############~~~~~~~~~~~~~~~~~~~~~~~~Hello from Test thing");
     }
 
     

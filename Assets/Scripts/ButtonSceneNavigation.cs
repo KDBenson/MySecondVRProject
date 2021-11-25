@@ -27,6 +27,7 @@ public class ButtonSceneNavigation : MonoBehaviour
     //    Invoke("LoadMainMenu", 3.0f);
     //}
 
+
     public void QuitGame()
     {
         Application.Quit();
