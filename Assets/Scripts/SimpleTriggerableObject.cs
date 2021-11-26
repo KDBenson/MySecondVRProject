@@ -10,6 +10,7 @@ public class SimpleTriggerableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("This object is triggereing STO " + other.name);
         TriggerCatalyst catalyst = other.transform.GetComponent<TriggerCatalyst>();
 
         if(catalyst!= null)

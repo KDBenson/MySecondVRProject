@@ -15,12 +15,15 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
 
 
     //an interactable object has a rigidbody, we want to capture that specific rigidbody to freeze it
-    private XRGrabInteractable curInteractable = null;
-    private Rigidbody heldRigidBody = null;
-    private bool socketOccupied = false;
+    //private XRGrabInteractable curInteractable = null;
+    //private Rigidbody heldRigidBody = null;
+    //private bool socketOccupied = false;
+
+    private XRGrabInteractable _interactable;
+
 
     //if no transform was set in the editor, set the transform to the same as the object this component is on
-    private void Start()
+    private void Awake()
     {
         if (objectSlotAnchor == null)
         {
@@ -29,80 +32,46 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_interactable != null)
+        {
+            Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
+            _thisRB.constraints = RigidbodyConstraints.None;
+        }
+        GameObject collisionObject = other.gameObject;
+        if (CheckTagsForMatch(collisionObject))
+        {
+            collisionObject.transform.position = objectSlotAnchor.position;
+            collisionObject.transform.rotation = objectSlotAnchor.rotation;
+            _interactable = collisionObject.gameObject.GetComponent<XRGrabInteractable>();
+            if (_interactable != null)
+            {
+                Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
+                _thisRB.constraints = RigidbodyConstraints.FreezeAll;
+            }
+        }
+    }
+
     //re-enable moving the object that was held in the slot anchor
     private void OnTriggerExit(Collider other)
     {
-        //if (curInteractable != null)
+        //if (_interactable != null)
         //{
-        //    FreeSocket();
+        //    Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
+        //    _thisRB.constraints = RigidbodyConstraints.None;
         //}
-        if (socketOccupied)
+        GameObject exitingObject = other.gameObject;
+        //release the freeze
+        XRGrabInteractable exitingGrabAble = exitingObject.gameObject.GetComponent<XRGrabInteractable>();
+        if (exitingGrabAble != null)
         {
-            FreeSocket();
-        }
-        other.attachedRigidbody.constraints = RigidbodyConstraints.None;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //capture the object attatched to the collider going into the trigger
-        GameObject collidedObject = other.gameObject;
-        //remove what is in the socket if occupied
-        if(socketOccupied)
-        {
-            FreeSocket();
+            Rigidbody _thisRB = exitingGrabAble.GetComponent<Rigidbody>();
+            _thisRB.constraints = RigidbodyConstraints.None;
         }
 
-        if (collidedObject != null && CheckTagsForMatch(collidedObject))
-        {
-            //puts the object into position and rotation immediately, and physics still happens
-            collidedObject.transform.position = objectSlotAnchor.position;
-            collidedObject.transform.rotation = objectSlotAnchor.rotation;
-            //set the interactable into the socket
-            if (heldRigidBody == null)
-            {               
-                SetCurrentInteractable(collidedObject);
-                FreezeMotion();
-                socketOccupied = true;
-            }
-
-        }
     }
 
-    private bool FreeSocket()
-    {
-        ReleaseMotion();
-        ClearCurrentInteractable();
-        return socketOccupied = false;
-    }
-
-    private void SetCurrentInteractable(GameObject gameObject)
-    {
-        curInteractable = gameObject.GetComponent<XRGrabInteractable>();
-        heldRigidBody = curInteractable.GetComponent<Rigidbody>();
-    }
-
-    private void ClearCurrentInteractable()
-    {
-        curInteractable = null;
-        heldRigidBody = null;
-    }
-
-    private void FreezeMotion()
-    {
-        if(heldRigidBody!=null)
-        {
-            heldRigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
-    private void ReleaseMotion()
-    {
-        if(heldRigidBody!=null)
-        {
-            heldRigidBody.constraints = RigidbodyConstraints.None;
-        }
-    }
 
     public bool CheckTagsForMatch(GameObject other)
     {

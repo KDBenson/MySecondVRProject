@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    public ButtonSceneNavigation sceneNavigation;
+    //public ButtonSceneNavigation sceneNavigation;
     public bool winConditionReached = false;
 
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("---------------------------------------hello from PlayerWins() in GameManager");
         //having issue with this being null if I try to do it more than once
-        sceneNavigation.LoadMainMenu();
+        LoadMainMenu();
 
     }
 
@@ -71,6 +71,27 @@ public class GameManager : MonoBehaviour
     public void RemoveWinningCondition()
     {
         winConditionReached = false;
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadSceneByBuildIndex(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quitting Application.");
     }
 
 }
