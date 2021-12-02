@@ -68,5 +68,18 @@ public class SimpleObjectSocket : MonoBehaviour
         
     }
 
+    public void FreezeInteractableBody()
+    {
+        //capture the rigidbody
+        Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
+        _thisRB.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void ThawInteractableBody()
+    {
+        Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
+        _thisRB.constraints = RigidbodyConstraints.None;
+    }
+
 
 }

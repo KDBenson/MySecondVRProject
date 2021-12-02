@@ -20,6 +20,7 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
     //private bool socketOccupied = false;
 
     private XRGrabInteractable _interactable;
+    //private Rigidbody _interactableRigidBody;
 
 
     //if no transform was set in the editor, set the transform to the same as the object this component is on
@@ -29,49 +30,50 @@ public class SimpleObjectSocketWithTagCheck : MonoBehaviour
         {
             objectSlotAnchor = transform;
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (_interactable != null)
         {
             Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
             _thisRB.constraints = RigidbodyConstraints.None;
+            //ThawInteractableBody();
         }
         GameObject collisionObject = other.gameObject;
         if (CheckTagsForMatch(collisionObject))
         {
-            collisionObject.transform.position = objectSlotAnchor.position;
-            collisionObject.transform.rotation = objectSlotAnchor.rotation;
+
             _interactable = collisionObject.gameObject.GetComponent<XRGrabInteractable>();
+            _interactable.transform.position = objectSlotAnchor.position;
+            _interactable.transform.rotation = objectSlotAnchor.rotation;
+
             if (_interactable != null)
             {
                 Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
                 _thisRB.constraints = RigidbodyConstraints.FreezeAll;
+                //FreezeInteractableBody();
             }
         }
     }
 
-    //re-enable moving the object that was held in the slot anchor
     private void OnTriggerExit(Collider other)
     {
-        //if (_interactable != null)
-        //{
-        //    Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
-        //    _thisRB.constraints = RigidbodyConstraints.None;
-        //}
+
         GameObject exitingObject = other.gameObject;
         //release the freeze
         XRGrabInteractable exitingGrabAble = exitingObject.gameObject.GetComponent<XRGrabInteractable>();
         if (exitingGrabAble != null)
         {
-            Rigidbody _thisRB = exitingGrabAble.GetComponent<Rigidbody>();
+            //Rigidbody _thisRB = exitingGrabAble.GetComponent<Rigidbody>();
+            //_thisRB.constraints = RigidbodyConstraints.None;
+            Debug.Log("hello from SimpleObjectSocketWithTageCheck- OnTriggerExit- exiting grabable not null " + exitingGrabAble.name);
+            Rigidbody _thisRB = _interactable.GetComponent<Rigidbody>();
             _thisRB.constraints = RigidbodyConstraints.None;
         }
 
     }
-
 
     public bool CheckTagsForMatch(GameObject other)
     {

@@ -20,4 +20,9 @@ public class TestAnimationTriggets : MonoBehaviour
         _anim.SetTrigger(animTriggrName);
     }
 
+    public void ResetAnimation(string animTriggrName)
+    {
+        _anim.ResetTrigger(animTriggrName);
+    }
+
 }

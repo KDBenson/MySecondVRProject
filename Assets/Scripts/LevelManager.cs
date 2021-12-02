@@ -17,4 +17,9 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.TestThing();
     }
 
+    public void TestExitThing()
+    {
+        GameManager.Instance.TestExitThing();
+    }
+
 }

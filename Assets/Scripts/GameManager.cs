@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -62,7 +63,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("~~~#############~~~~~~~~~~~~~~~~~~~~~~~~Hello from Test thing");
     }
 
-    
+    public void TestExitThing()
+    {
+        Debug.Log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% hello from TestExitThing()");
+    }
+
+
+
     public void AchieveWinningCondition()
     {
         winConditionReached = true;
@@ -72,6 +79,8 @@ public class GameManager : MonoBehaviour
     {
         winConditionReached = false;
     }
+
+    /* scene controllers *************************************/
 
     public void LoadScene(string sceneName)
     {
